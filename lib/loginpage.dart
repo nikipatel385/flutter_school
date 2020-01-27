@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  var _loginName = ['--Select--', 'Teacher', 'Parent'];
+  var _loginName = ['--Select--','Admin', 'Teacher', 'Parents'];
 
   final _minpadding = 5.0;
 
@@ -100,9 +100,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController pswdController = TextEditingController();
 
-  set _password(String _password) {}
-
-//  String _password;
+  String _password;
 
   @override
   void initState() {
@@ -321,7 +319,23 @@ class _LoginPageState extends State<LoginPage> {
 
                                   Navigator.of(context).push(route);
                                 }
-//                            } else if (_currentItemSelected == 'Parents') {
+                              }
+                                else if(_currentItemSelected == 'Admin') {
+                                if (_formKey.currentState.validate()) {
+//                                SharedPreferences pref = await SharedPreferences.getInstance();
+
+//                                pref.setBool('isLogin', true);
+
+                                  var route = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AdminPage(),
+                                  );
+
+                                  Navigator.of(context).push(route);
+                                }
+
+                            }
+//                            else if (_currentItemSelected == 'Parents') {
 //                              if (_formKey.currentState.validate()) {
 ////                                SharedPreferences pref = await SharedPreferences.getInstance();
 //
@@ -334,7 +348,7 @@ class _LoginPageState extends State<LoginPage> {
 //
 //                                Navigator.of(context).push(route);
 //                              }
-                              } else {
+                              else {
 //                              SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                              pref.setBool("isLogin", false);
