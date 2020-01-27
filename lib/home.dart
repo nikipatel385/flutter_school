@@ -20,7 +20,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static final String url = 'http://172.16.17.141/app_teacher_school_list.php';
+  static final String url = 'http://apps.triz.co.in/app_teacher_school_list.php';
 
   static final auth = 'Trizinno2019';
 
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
       child: Form(
         key: this._formKey,
         child: Padding(
-          padding: EdgeInsets.all(_minpadding * 7),
+          padding: EdgeInsets.all(_minpadding * 3),
           child: ListView(
             children: <Widget>[
               Padding(
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                   )),
 
               Padding(
-                padding: EdgeInsets.only(top: _minpadding * 30),
+                padding: EdgeInsets.only(top: _minpadding * 25),
                 child: TypeAheadFormField(
                     textFieldConfiguration: TextFieldConfiguration(
                       autofocus: true,

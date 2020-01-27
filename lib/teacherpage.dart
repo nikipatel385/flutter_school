@@ -34,21 +34,47 @@ class _TeacherPageState extends State<TeacherPage> {
                 ),
               ),
               ListTile(
-                title: Text('Setting'),
-                trailing: const Icon(Icons.settings),
+                leading: const Icon(Icons.home),
+                title: Text('home'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
-              Divider(),
               ListTile(
-                title: Text("Log Out"),
-                trailing: const Icon(Icons.power_settings_new),
-                onTap: () =>
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return LoginPage();
-                })),
-              )
+                leading: const Icon(Icons.fingerprint),
+                title: Text('Take Attendance'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.assignment),
+                title: Text('Assign Homework/Assignment'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.people),
+                title: Text('Parent Communication'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.schedule),
+                title: Text('My Timetable'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.calendar_today),
+                title: Text('View Proxy'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
             ],
           ),
         ),

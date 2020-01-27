@@ -13,10 +13,10 @@ class _ParentsPageState extends State<ParentsPage> {
     return WillPopScope(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Parents App'),
+          title: Text('Parent App'),
         ),
         body: Center(
-          child: Text('Hello Parents'),
+          child: Text('Hello Parent'),
         ),
         drawer: Drawer(
           child: ListView(
@@ -34,21 +34,68 @@ class _ParentsPageState extends State<ParentsPage> {
                 ),
               ),
               ListTile(
-                title: Text('Setting'),
-                trailing: const Icon(Icons.settings),
+                leading: const Icon(Icons.person),
+                title: Text('Profile'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
-              Divider(),
               ListTile(
-                title: Text("Log Out"),
-                trailing: const Icon(Icons.power_settings_new),
-                onTap: () =>
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return LoginPage();
-                })),
-              )
+                leading: const Icon(Icons.fingerprint),
+                title: Text('Attendance'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.attach_money),
+                title: Text('fees'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.calendar_today),
+                title: Text('Circular'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.assignment),
+                title: Text('Homework/Assignment'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.exit_to_app),
+                title: Text('Leave Application'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.grade),
+                title: Text('Result'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.book),
+                title: Text('Exam Schedule'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.schedule),
+                title: Text('Timetable'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
             ],
           ),
         ),

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:http/http.dart' as http;
+
+import 'dart:convert';
+
 import 'package:flutter_school/parentspage.dart';
 
 import 'package:flutter_school/teacherpage.dart';
 
 import 'package:flutter_school/adminpage.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   final String logo;
@@ -16,15 +22,81 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+//
+//  String phoneNo;
+//  String smsCode;
+//  String verificationId;
+//
+//  Future<void> verifyPhone() async{
+//
+//    final PhoneCodeAutoRetrievalTimeout autoRetrieve =(String verId) {
+//      this.verificationId = verId;
+//    };
+//
+//    final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResend]){
+//      this.verificationId = verId;
+//    };
+//
+//    await FirebaseAuth.instance.verifyPhoneNumber(
+//      phoneNumber: this.phoneNo,
+//      codeAutoRetrievalTimeout: autoRetrieve,
+//      codeSent: smsCodeSent,
+//      timeout: const Duration(seconds: 5),
+//      verificationCompleted:  (AuthCredential phoneAuthCredential) {
+//        print(phoneAuthCredential);
+//      },
+//      verificationFailed: (AuthException exceptio) {
+//        print('${exceptio.message}');
+//      }
+//    );
+//  }
+//
+//  Future<bool> smsCodeDialog(BuildContext context){
+//    return showDialog(
+//      context: context,
+//      barrierDismissible: false,
+//      builder: (BuildContext contexkkt){
+//        return AlertDialog(
+//          title: Text('Enter sms Code'),
+//          content: TextField(
+//            onChanged: (value){
+//              this.smsCode = value;
+//            },
+//          ),
+//          contentPadding: EdgeInsets.all(10.0),
+//          actions: <Widget>[
+//            FlatButton(
+//              child: Text('Done'),
+//              onPressed: (){
+//                FirebaseAuth.instance.currentUser().then((user){
+//                  if(user!=null){
+//                    Navigator.of(context).pop();
+//                    Navigator.of(context).pushReplacementNamed('ParentsPage()');
+//                  }else{
+//                    Navigator.of(context).pop();
+//                  }
+//                });
+//              },
+//            )
+//          ],
+//        );
+//      }
+//    );
+//  }
+//
+//  signIn() {
+//    FirebaseAuth.instance.ger
+//  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  var _loginName = ['Select', 'Teacher', 'Parents', 'Admin'];
+  var _loginName = ['--Select--', 'Teacher', 'Parent'];
 
   final _minpadding = 5.0;
 
-  var _currentItemSelected = 'Select';
+  var _currentItemSelected = '--Select--';
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   TextEditingController pswdController = TextEditingController();
 
@@ -35,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
 
     super.initState();
+    this.fetchPost();
 
     // cekLogin();
   }
@@ -56,6 +129,27 @@ class _LoginPageState extends State<LoginPage> {
 //    }
 
 //  }
+  var data;
+
+  Future<String> fetchPost() async {
+    final response = await http.post(
+        Uri.encodeFull('http://apps.triz.co.in/app_check_mobile.php'),
+        body: {"mobile_number": ""});
+    print(response.body);
+
+    setState(() {
+      var dataToJson = json.decode(response.body);
+
+      data = dataToJson['status_code'];
+      print(data);
+    });
+    if(data == 1){
+      print('Valid');
+      build(context);
+    }else{
+      print('Invalid');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +166,10 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: EdgeInsets.only(top: 50.0),
                     child:
-                        Image.network(widget.logo, height: 100.0, width: 100.0),
+                        Image.network(widget.logo, height: 90.0, width: 90.0),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: _minpadding * 20),
+                    padding: EdgeInsets.only(top: _minpadding * 18),
                     child: FormField(
                       builder: (FormFieldState state) {
                         return InputDecorator(
@@ -109,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: EdgeInsets.only(top: _minpadding * 3),
                     child: TextFormField(
-                      controller: nameController,
+                      controller: phoneController,
 
                       keyboardType: TextInputType.number,
 
@@ -121,124 +215,148 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: 'Enter Your Mobile Number',
                         labelText: 'Mobile Number',
                       ),
+//                      onChanged: (value){
+//                        this.phoneNo = value;
+//                      },
 
                       // ignore: missing_return
-
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please Enter Mobile Number';
+                          // ignore: missing_return
+                        } else if (value.length != 10) {
+                          return 'Invalid Phone Number';
                         }
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: _minpadding * 3),
-                    child: TextFormField(
-                      controller: pswdController,
-
-                      obscureText: true,
-
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        ),
-                        prefixIcon: Icon(Icons.lock),
-                        hintText: 'Enter Your Password',
-                        labelText: 'Password',
-                      ),
-
-                      // ignore: missing_return
-
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please Enter Password';
-                        } else if (value.length < 6) {
-                          return 'Invalid Password';
-                        }
-                      },
-
-                      onSaved: (value) => _password = value,
-                    ),
-                  ),
-                  Padding(
+                  if (this._currentItemSelected != 'Parent')
+                    Padding(
                       padding: EdgeInsets.only(top: _minpadding * 3),
-                      child: Container(
-                        margin: EdgeInsets.only(left: 100.0, right: 100.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: Theme.of(context).accentColor,
-                          textColor: Theme.of(context).primaryColorDark,
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(color: Colors.white),
+                      child: TextFormField(
+                        controller: pswdController,
+
+                        obscureText: true,
+
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
                           ),
-                          onPressed: () {
-                            if (_currentItemSelected == 'Teacher') {
-                              if (_formKey.currentState.validate()) {
-//                                SharedPreferences pref = await SharedPreferences.getInstance();
+                          prefixIcon: Icon(Icons.lock),
+                          hintText: 'Enter Your Password',
+                          labelText: 'Password',
+                        ),
 
-//                                pref.setBool('isLogin', true);
+                        // ignore: missing_return
 
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TeacherPage(),
-                                );
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please Enter Password';
+                          } else if (value.length < 6) {
+                            return 'Invalid Password';
+                          }
+                        },
 
-                                Navigator.of(context).push(route);
-                              }
-                            } else if (_currentItemSelected == 'Parents') {
-                              if (_formKey.currentState.validate()) {
-//                                SharedPreferences pref = await SharedPreferences.getInstance();
-
-//                                  pref.setBool('isLogin', true);
-
+                        onSaved: (value) => _password = value,
+                      ),
+                    ),
+                  if (this._currentItemSelected == 'Parent')
+                    Padding(
+                        padding: EdgeInsets.only(top: _minpadding * 3),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 100.0, right: 100.0),
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            color: Theme.of(context).accentColor,
+                            textColor: Theme.of(context).primaryColorDark,
+                            child: const Text(
+                              'Get OTP',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              if (this.phoneController.text == '9033456707') {
                                 var route = MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       ParentsPage(),
                                 );
-
                                 Navigator.of(context).push(route);
+                                print('correct');
                               }
-                            } else if (_currentItemSelected == 'Admin') {
-                              if (_formKey.currentState.validate()) {
+                              else{
+                                print('Incorrect');
+                              }
+                            }
+                          ),
+                        )),
+                  if (this._currentItemSelected != 'Parent')
+                    Padding(
+                        padding: EdgeInsets.only(top: _minpadding * 3),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 100.0, right: 100.0),
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            color: Theme.of(context).accentColor,
+                            textColor: Theme.of(context).primaryColorDark,
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              if (_currentItemSelected == 'Teacher') {
+                                if (_formKey.currentState.validate()) {
 //                                SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                                pref.setBool('isLogin', true);
 
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      AdminPage(),
-                                );
+                                  var route = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        TeacherPage(),
+                                  );
 
-                                Navigator.of(context).push(route);
-                              }
-                            } else {
+                                  Navigator.of(context).push(route);
+                                }
+//                            } else if (_currentItemSelected == 'Parents') {
+//                              if (_formKey.currentState.validate()) {
+////                                SharedPreferences pref = await SharedPreferences.getInstance();
+//
+////                                  pref.setBool('isLogin', true);
+//
+//                                var route = MaterialPageRoute(
+//                                  builder: (BuildContext context) =>
+//                                      ParentsPage(),
+//                                );
+//
+//                                Navigator.of(context).push(route);
+//                              }
+                              } else {
 //                              SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                              pref.setBool("isLogin", false);
 
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  child: new AlertDialog(
-                                    title: Text('Select'),
-                                    content: new Text(
-                                      "please select Your school",
-                                      style: new TextStyle(fontSize: 16.0),
-                                    ),
-                                    actions: <Widget>[
-                                      new FlatButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: new Text("OK"))
-                                    ],
-                                  ));
-                            }
-                          },
-                        ),
-                      )),
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    child: new AlertDialog(
+                                      title: Text('Select'),
+                                      content: new Text(
+                                        "please select Your school",
+                                        style: new TextStyle(fontSize: 16.0),
+                                      ),
+                                      actions: <Widget>[
+                                        new FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: new Text("OK"))
+                                      ],
+                                    ));
+                              }
+                            },
+                          ),
+                        )),
                 ],
               ),
             ),

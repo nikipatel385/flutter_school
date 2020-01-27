@@ -42,13 +42,9 @@ class _AdminPageState extends State<AdminPage> {
               ),
               Divider(),
               ListTile(
-                title: Text("Log Out"),
-                trailing: const Icon(Icons.power_settings_new),
-                onTap: () =>
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return LoginPage();
-                })),
-              )
+                  title: Text("Log Out"),
+                  trailing: const Icon(Icons.power_settings_new),
+                  onTap: () {})
             ],
           ),
         ),
