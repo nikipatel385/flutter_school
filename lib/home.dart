@@ -20,7 +20,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static final String url = 'http://apps.triz.co.in/app_teacher_school_list.php';
+  static final String url =
+      'http://apps.triz.co.in/app_teacher_school_list.php';
 
   static final auth = 'Trizinno2019';
 
@@ -154,7 +155,6 @@ class _HomeState extends State<Home> {
                     },
 
                     // ignore: missing_return
-
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Please Select a School';
