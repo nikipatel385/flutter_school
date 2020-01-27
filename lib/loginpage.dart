@@ -100,7 +100,9 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController pswdController = TextEditingController();
 
-  String _password;
+  set _password(String _password) {}
+
+//  String _password;
 
   @override
   void initState() {
@@ -131,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
 //  }
   var data;
 
-  // ignore: missing_return
   Future<String> fetchPost() async {
     final response = await http.post(
         Uri.encodeFull('http://apps.triz.co.in/app_check_mobile.php'),
@@ -144,10 +145,10 @@ class _LoginPageState extends State<LoginPage> {
       data = dataToJson['status_code'];
       print(data);
     });
-    if (data == 1) {
+    if(data == 1){
       print('Valid');
       build(context);
-    } else {
+    }else{
       print('Invalid');
     }
   }
@@ -269,26 +270,28 @@ class _LoginPageState extends State<LoginPage> {
                         child: Container(
                           margin: EdgeInsets.only(left: 100.0, right: 100.0),
                           child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).accentColor,
-                              textColor: Theme.of(context).primaryColorDark,
-                              child: const Text(
-                                'Get OTP',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {
-                                if (this.phoneController.text == '9033456707') {
-                                  var route = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ParentsPage(),
-                                  );
-                                  Navigator.of(context).push(route);
-                                  print('correct');
-                                } else {
-                                  print('Incorrect');
-                                }
-                              }),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            color: Theme.of(context).accentColor,
+                            textColor: Theme.of(context).primaryColorDark,
+                            child: const Text(
+                              'Get OTP',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              if (this.phoneController.text == '9033456707') {
+                                var route = MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ParentsPage(),
+                                );
+                                Navigator.of(context).push(route);
+                                print('correct');
+                              }
+                              else{
+                                print('Incorrect');
+                              }
+                            }
+                          ),
                         )),
                   if (this._currentItemSelected != 'Parent')
                     Padding(
