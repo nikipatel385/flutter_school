@@ -8,6 +8,6 @@ void main() {
     title: 'MyApp',
     home: Home(),
     theme: ThemeData(
-        primaryColor: Colors.lightBlue, accentColor: Colors.lightBlueAccent),
+        primaryColor: Colors.indigo, accentColor: Colors.indigoAccent),
   ));
 }
