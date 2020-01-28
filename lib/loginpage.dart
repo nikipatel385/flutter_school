@@ -131,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
 //  }
   var data;
 
+  // ignore: missing_return
   Future<String> fetchPost() async {
     final response = await http.post(
         Uri.encodeFull('http://apps.triz.co.in/app_check_mobile.php'),
