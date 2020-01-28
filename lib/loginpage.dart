@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  var _loginName = ['--Select--','Admin', 'Teacher', 'Parents'];
+  var _loginName = ['--Select--', 'Admin', 'Teacher', 'Parents'];
 
   final _minpadding = 5.0;
 
@@ -143,10 +143,10 @@ class _LoginPageState extends State<LoginPage> {
       data = dataToJson['status_code'];
       print(data);
     });
-    if(data == 1){
+    if (data == 1) {
       print('Valid');
       build(context);
-    }else{
+    } else {
       print('Invalid');
     }
   }
@@ -266,28 +266,26 @@ class _LoginPageState extends State<LoginPage> {
                         child: Container(
                           margin: EdgeInsets.only(left: 100.0, right: 100.0),
                           child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            color: Theme.of(context).accentColor,
-                            textColor: Theme.of(context).primaryColorDark,
-                            child: const Text(
-                              'Get OTP',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () {
-                              if (this.phoneController.text == '9033456707') {
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ParentsPage(),
-                                );
-                                Navigator.of(context).push(route);
-                                print('correct');
-                              }
-                              else{
-                                print('Incorrect');
-                              }
-                            }
-                          ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Theme.of(context).accentColor,
+                              textColor: Theme.of(context).primaryColorDark,
+                              child: const Text(
+                                'Get OTP',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              onPressed: () {
+                                if (this.phoneController.text == '9033456707') {
+                                  var route = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ParentsPage(),
+                                  );
+                                  Navigator.of(context).push(route);
+                                  print('correct');
+                                } else {
+                                  print('Incorrect');
+                                }
+                              }),
                         )),
                   if (this._currentItemSelected != 'Parents')
                     Padding(
@@ -317,8 +315,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                   Navigator.of(context).push(route);
                                 }
-                              }
-                                else if(_currentItemSelected == 'Admin') {
+                              } else if (_currentItemSelected == 'Admin') {
                                 if (_formKey.currentState.validate()) {
 //                                SharedPreferences pref = await SharedPreferences.getInstance();
 
@@ -331,8 +328,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                   Navigator.of(context).push(route);
                                 }
-
-                            }
+                              }
 //                            else if (_currentItemSelected == 'Parents') {
 //                              if (_formKey.currentState.validate()) {
 ////                                SharedPreferences pref = await SharedPreferences.getInstance();
@@ -378,7 +374,26 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+      onWillPop: _onBackPressed,
     );
+  }
+
+  Future<bool> _onBackPressed() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text('Do you really want to exit the app'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('No'),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                FlatButton(
+                  child: Text('Yes'),
+                  onPressed: () => Navigator.pop(context, true),
+                )
+              ],
+            ));
   }
 
   void _onDropDownItemSelected(String newValueSelected) {

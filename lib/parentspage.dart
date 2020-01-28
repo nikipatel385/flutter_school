@@ -27,9 +27,28 @@ class ParentsPage extends StatefulWidget {
 }
 
 class _ParentsPageState extends State<ParentsPage> {
+  Future<bool> _onBackPressed() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text('Do you really want to exit the app'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('No'),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                FlatButton(
+                  child: Text('Yes'),
+                  onPressed: () => Navigator.pop(context, true),
+                )
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      onWillPop: _onBackPressed,
       child: Scaffold(
         appBar: AppBar(),
         drawer: Drawer(
@@ -222,19 +241,19 @@ class _ParentsPageState extends State<ParentsPage> {
                     ),
                     Center(
                         child: Text(
-                          'Profile',
-                          style: TextStyle(color: Colors.indigo),
-                        )),
+                      'Profile',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => ProfileParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//profile
+            ), //profile
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -245,20 +264,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Attendance',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => AttendanceParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//attendance
+            ), //attendance
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -269,20 +289,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Fees',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => FeesParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//fees
+            ), //fees
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -293,20 +314,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Circular',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => CircularParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//circular
+            ), //circular
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -317,20 +339,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Homework/Assignment',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => HomeworkParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//Homework/Assignment
+            ), //Homework/Assignment
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -341,20 +364,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Leave Application',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => LeaveApplicationParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//Leave Application
+            ), //Leave Application
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -365,20 +389,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Result',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => ResultParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//Result
+            ), //Result
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -389,20 +414,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Exam Schedule',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => ExamScheduleParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//Exam Schedule
+            ), //Exam Schedule
             GestureDetector(
               child: new Card(
                 elevation: 5.0,
@@ -413,20 +439,21 @@ class _ParentsPageState extends State<ParentsPage> {
                       size: 80.0,
                       color: Colors.indigo,
                     ),
-                    Center(child: Text(
+                    Center(
+                        child: Text(
                       'Timetable',
                       style: TextStyle(color: Colors.indigo),
                     )),
                   ],
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => TimetableParent(),
                 );
                 Navigator.of(context).push(route);
               },
-            ),//Timetable
+            ), //Timetable
           ],
         ),
       ),
