@@ -154,182 +154,179 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        body: Center(
-          child: Form(
-            key: _formKey,
-            autovalidate: true,
-            child: Padding(
-              padding: EdgeInsets.all(_minpadding * 7),
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 50.0),
-                    child:
-                        Image.network(widget.logo, height: 90.0, width: 90.0),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: _minpadding * 18),
-                    child: FormField(
-                      builder: (FormFieldState state) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
-                              ),
-                              prefixIcon: Icon(Icons.perm_identity),
-                              hintText: 'Login As',
-                              labelText: 'Login As'),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              isDense: true,
-                              items: _loginName.map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                              value: _currentItemSelected,
-                              onChanged: (String newValueSelected) {
-                                _onDropDownItemSelected(newValueSelected);
-                              },
+    return Scaffold(
+      body: Center(
+        child: Form(
+          key: _formKey,
+          autovalidate: true,
+          child: Padding(
+            padding: EdgeInsets.all(_minpadding * 7),
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Image.network(widget.logo, height: 90.0, width: 90.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: _minpadding * 18),
+                  child: FormField(
+                    builder: (FormFieldState state) {
+                      return InputDecorator(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
+                            prefixIcon: Icon(Icons.perm_identity),
+                            hintText: 'Login As',
+                            labelText: 'Login As'),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            isDense: true,
+                            items: _loginName.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            value: _currentItemSelected,
+                            onChanged: (String newValueSelected) {
+                              _onDropDownItemSelected(newValueSelected);
+                            },
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: _minpadding * 3),
+                  child: TextFormField(
+                    controller: phoneController,
+
+                    keyboardType: TextInputType.number,
+
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      ),
+                      prefixIcon: Icon(Icons.phone),
+                      hintText: 'Enter Your Mobile Number',
+                      labelText: 'Mobile Number',
+                    ),
+//                      onChanged: (value){
+//                        this.phoneNo = value;
+//                      },
+
+                    // ignore: missing_return
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please Enter Mobile Number';
+                        // ignore: missing_return
+                      } else if (value.length != 10) {
+                        return 'Invalid Phone Number';
+                      }
+                    },
+                  ),
+                ),
+                if (this._currentItemSelected != 'Parents')
                   Padding(
                     padding: EdgeInsets.only(top: _minpadding * 3),
                     child: TextFormField(
-                      controller: phoneController,
+                      controller: pswdController,
 
-                      keyboardType: TextInputType.number,
+                      obscureText: true,
 
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30.0)),
                         ),
-                        prefixIcon: Icon(Icons.phone),
-                        hintText: 'Enter Your Mobile Number',
-                        labelText: 'Mobile Number',
+                        prefixIcon: Icon(Icons.lock),
+                        hintText: 'Enter Your Password',
+                        labelText: 'Password',
                       ),
-//                      onChanged: (value){
-//                        this.phoneNo = value;
-//                      },
 
                       // ignore: missing_return
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please Enter Mobile Number';
-                          // ignore: missing_return
-                        } else if (value.length != 10) {
-                          return 'Invalid Phone Number';
+                          return 'Please Enter Password';
+                        } else if (value.length < 6) {
+                          return 'Invalid Password';
                         }
                       },
+
+                      onSaved: (value) => _password = value,
                     ),
                   ),
-                  if (this._currentItemSelected != 'Parents')
-                    Padding(
+                if (this._currentItemSelected == 'Parents')
+                  Padding(
                       padding: EdgeInsets.only(top: _minpadding * 3),
-                      child: TextFormField(
-                        controller: pswdController,
-
-                        obscureText: true,
-
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                          ),
-                          prefixIcon: Icon(Icons.lock),
-                          hintText: 'Enter Your Password',
-                          labelText: 'Password',
-                        ),
-
-                        // ignore: missing_return
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Password';
-                          } else if (value.length < 6) {
-                            return 'Invalid Password';
-                          }
-                        },
-
-                        onSaved: (value) => _password = value,
-                      ),
-                    ),
-                  if (this._currentItemSelected == 'Parents')
-                    Padding(
-                        padding: EdgeInsets.only(top: _minpadding * 3),
-                        child: Container(
-                          margin: EdgeInsets.only(left: 100.0, right: 100.0),
-                          child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).accentColor,
-                              textColor: Theme.of(context).primaryColorDark,
-                              child: const Text(
-                                'Get OTP',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {
-                                if (this.phoneController.text == '9033456707') {
-                                  var route = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ParentsPage(),
-                                  );
-                                  Navigator.of(context).push(route);
-                                  print('correct');
-                                } else {
-                                  print('Incorrect');
-                                }
-                              }),
-                        )),
-                  if (this._currentItemSelected != 'Parents')
-                    Padding(
-                        padding: EdgeInsets.only(top: _minpadding * 3),
-                        child: Container(
-                          margin: EdgeInsets.only(left: 100.0, right: 100.0),
-                          child: RaisedButton(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 100.0, right: 100.0),
+                        child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
                             color: Theme.of(context).accentColor,
                             textColor: Theme.of(context).primaryColorDark,
                             child: const Text(
-                              'Submit',
+                              'Get OTP',
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              if (_currentItemSelected == 'Teacher') {
-                                if (_formKey.currentState.validate()) {
-//                                SharedPreferences pref = await SharedPreferences.getInstance();
-
-//                                pref.setBool('isLogin', true);
-
-                                  var route = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        TeacherPage(),
-                                  );
-
-                                  Navigator.of(context).push(route);
-                                }
-                              } else if (_currentItemSelected == 'Admin') {
-                                if (_formKey.currentState.validate()) {
-//                                SharedPreferences pref = await SharedPreferences.getInstance();
-
-//                                pref.setBool('isLogin', true);
-
-                                  var route = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        AdminPage(),
-                                  );
-
-                                  Navigator.of(context).push(route);
-                                }
+                              if (this.phoneController.text == '9033456707') {
+                                var route = MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ParentsPage(),
+                                );
+                                Navigator.of(context).push(route);
+                                print('correct');
+                              } else {
+                                print('Incorrect');
                               }
+                            }),
+                      )),
+                if (this._currentItemSelected != 'Parents')
+                  Padding(
+                      padding: EdgeInsets.only(top: _minpadding * 3),
+                      child: Container(
+                        margin: EdgeInsets.only(left: 100.0, right: 100.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: Theme.of(context).accentColor,
+                          textColor: Theme.of(context).primaryColorDark,
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            if (_currentItemSelected == 'Teacher') {
+                              if (_formKey.currentState.validate()) {
+//                                SharedPreferences pref = await SharedPreferences.getInstance();
+
+//                                pref.setBool('isLogin', true);
+
+                                var route = MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      TeacherPage(),
+                                );
+
+                                Navigator.of(context).push(route);
+                              }
+                            } else if (_currentItemSelected == 'Admin') {
+                              if (_formKey.currentState.validate()) {
+//                                SharedPreferences pref = await SharedPreferences.getInstance();
+
+//                                pref.setBool('isLogin', true);
+
+                                var route = MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      AdminPage(),
+                                );
+
+                                Navigator.of(context).push(route);
+                              }
+                            }
 //                            else if (_currentItemSelected == 'Parents') {
 //                              if (_formKey.currentState.validate()) {
 ////                                SharedPreferences pref = await SharedPreferences.getInstance();
@@ -343,58 +340,38 @@ class _LoginPageState extends State<LoginPage> {
 //
 //                                Navigator.of(context).push(route);
 //                              }
-                              else {
+                            else {
 //                              SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                              pref.setBool("isLogin", false);
 
-                                showDialog(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    child: new AlertDialog(
-                                      title: Text('Select'),
-                                      content: new Text(
-                                        "please select Your school",
-                                        style: new TextStyle(fontSize: 16.0),
-                                      ),
-                                      actions: <Widget>[
-                                        new FlatButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: new Text("OK"))
-                                      ],
-                                    ));
-                              }
-                            },
-                          ),
-                        )),
-                ],
-              ),
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  child: new AlertDialog(
+                                    title: Text('Select'),
+                                    content: new Text(
+                                      "please select Your school",
+                                      style: new TextStyle(fontSize: 16.0),
+                                    ),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: new Text("OK"))
+                                    ],
+                                  ));
+                            }
+                          },
+                        ),
+                      )),
+              ],
             ),
           ),
         ),
       ),
-      onWillPop: _onBackPressed,
     );
-  }
-
-  Future<bool> _onBackPressed() {
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Do you really want to exit the app'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('No'),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
-                FlatButton(
-                  child: Text('Yes'),
-                  onPressed: () => Navigator.pop(context, true),
-                )
-              ],
-            ));
   }
 
   void _onDropDownItemSelected(String newValueSelected) {
