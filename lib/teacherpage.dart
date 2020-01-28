@@ -150,6 +150,159 @@ class _TeacherPageState extends State<TeacherPage> {
             ),
           ),
         ),
+        body: GridView.count(
+          padding: EdgeInsets.all(8.0),
+          crossAxisCount: 3,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          children: <Widget>[
+            GestureDetector(
+              child: new Card(
+                elevation: 3.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.person,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(
+                        child: Text(
+                      'Profile',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ProfileTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//profile
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.fingerprint,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Take Attendance',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => TakeAttendanceTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Take Attendance
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.assignment,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Homework/Assignment',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => AssignHomeworkTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Assign Homework/Assignment
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.people,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Parent Communication',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ParentCommunicationTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Parent Communication
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.access_time,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'My Timetable',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => MyTimetableTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//My Timetable
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.calendar_today,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'View Proxy',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ViewProxyTeacher(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//View Proxy
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'modules_parents/attendance_parent.dart';
@@ -202,6 +203,231 @@ class _ParentsPageState extends State<ParentsPage> {
               ],
             ),
           ),
+        ),
+        body: GridView.count(
+          padding: EdgeInsets.all(8.0),
+          crossAxisCount: 3,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          children: <Widget>[
+            GestureDetector(
+              child: new Card(
+                elevation: 3.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.person,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(
+                        child: Text(
+                          'Profile',
+                          style: TextStyle(color: Colors.indigo),
+                        )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ProfileParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//profile
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.fingerprint,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Attendance',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => AttendanceParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//attendance
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.attach_money,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Fees',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => FeesParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//fees
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.calendar_today,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Circular',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => CircularParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//circular
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.assignment,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Homework/Assignment',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => HomeworkParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Homework/Assignment
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.exit_to_app,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Leave Application',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => LeaveApplicationParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Leave Application
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.grade,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Result',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ResultParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Result
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.book,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Exam Schedule',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ExamScheduleParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Exam Schedule
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.schedule,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(child: Text(
+                      'Timetable',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
+                ),
+              ),
+              onTap: (){
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => TimetableParent(),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),//Timetable
+          ],
         ),
       ),
     );
