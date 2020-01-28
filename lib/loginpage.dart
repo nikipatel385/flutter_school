@@ -230,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ),
-                  if (this._currentItemSelected != 'Parent')
+                  if (this._currentItemSelected != 'Parents')
                     Padding(
                       padding: EdgeInsets.only(top: _minpadding * 3),
                       child: TextFormField(
@@ -262,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                         onSaved: (value) => _password = value,
                       ),
                     ),
-                  if (this._currentItemSelected == 'Parent')
+                  if (this._currentItemSelected == 'Parents')
                     Padding(
                         padding: EdgeInsets.only(top: _minpadding * 3),
                         child: Container(
@@ -291,7 +291,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           ),
                         )),
-                  if (this._currentItemSelected != 'Parent')
+                  if (this._currentItemSelected != 'Parents')
                     Padding(
                         padding: EdgeInsets.only(top: _minpadding * 3),
                         child: Container(

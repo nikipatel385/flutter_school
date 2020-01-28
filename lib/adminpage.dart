@@ -12,12 +12,7 @@ class _AdminPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Admin App'),
-        ),
-        body: Center(
-          child: Text('Hello Admin'),
-        ),
+        appBar: AppBar(),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,

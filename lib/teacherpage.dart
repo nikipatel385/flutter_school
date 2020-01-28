@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'modules_teacher/profile_teacher.dart';
+
+import 'modules_teacher/take_attendance_teacher.dart';
+
+import 'modules_teacher/view_proxy_teacher.dart';
+
+import 'modules_teacher/parent_communication_teacher.dart';
+
+import 'modules_teacher/my_timetable_teacher.dart';
+
+import 'modules_teacher/assign_homework_teacher.dart';
+
 import 'package:flutter_school/loginpage.dart';
 
 class TeacherPage extends StatefulWidget {
@@ -12,12 +24,7 @@ class _TeacherPageState extends State<TeacherPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Teacher App'),
-        ),
-        body: Center(
-          child: Text('Hello Teacher'),
-        ),
+        appBar: AppBar(),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -34,47 +41,66 @@ class _TeacherPageState extends State<TeacherPage> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.home),
-                title: Text('home'),
+                leading: const Icon(Icons.person),
+                title: Text('profile'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) => ProfileTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //profile
               ListTile(
                 leading: const Icon(Icons.fingerprint),
                 title: Text('Take Attendance'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) => TakeAttendanceTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //attendance
               ListTile(
                 leading: const Icon(Icons.assignment),
                 title: Text('Assign Homework/Assignment'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) => AssignHomeworkTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //homework/assignment
               ListTile(
                 leading: const Icon(Icons.people),
                 title: Text('Parent Communication'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        ParentCommunicationTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //parent communication
               ListTile(
                 leading: const Icon(Icons.schedule),
                 title: Text('My Timetable'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) => MyTimetableTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //my timetable
               ListTile(
                 leading: const Icon(Icons.calendar_today),
                 title: Text('View Proxy'),
                 onTap: () {
-                  Navigator.pop(context);
+                  var route = MaterialPageRoute(
+                    builder: (BuildContext context) => ViewProxyTeacher(),
+                  );
+                  Navigator.of(context).push(route);
                 },
-              ),
+              ), //view proxy
             ],
           ),
         ),
