@@ -26,82 +26,128 @@ class _TeacherPageState extends State<TeacherPage> {
       child: Scaffold(
         appBar: AppBar(),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                accountName: Text('Niki Patel'),
-                accountEmail: Text('nikipatel385@gmail.com'),
-                currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    'N',
-                    style: TextStyle(fontSize: 25.0),
+          child: Container(
+            color: Colors.indigo,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                ListTile(),
+                ListTile(
+                  leading: const Icon(
+                    Icons.person,
+                    color: Colors.white,
                   ),
+                  title: Text(
+                    'profile',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => ProfileTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //profile
+                ListTile(
+                  leading: const Icon(
+                    Icons.fingerprint,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Take Attendance',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          TakeAttendanceTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //attendance
+                ListTile(
+                  leading: const Icon(
+                    Icons.assignment,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Assign Homework/Assignment',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          AssignHomeworkTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //homework/assignment
+                ListTile(
+                  leading: const Icon(
+                    Icons.people,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Parent Communication',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ParentCommunicationTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //parent communication
+                ListTile(
+                  leading: const Icon(
+                    Icons.schedule,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'My Timetable',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => MyTimetableTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //my timetable
+                ListTile(
+                  leading: const Icon(
+                    Icons.calendar_today,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'View Proxy',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => ViewProxyTeacher(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ), //view proxy
+                Divider(
+                  color: Colors.white,
                 ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: Text('profile'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => ProfileTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //profile
-              ListTile(
-                leading: const Icon(Icons.fingerprint),
-                title: Text('Take Attendance'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => TakeAttendanceTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //attendance
-              ListTile(
-                leading: const Icon(Icons.assignment),
-                title: Text('Assign Homework/Assignment'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => AssignHomeworkTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //homework/assignment
-              ListTile(
-                leading: const Icon(Icons.people),
-                title: Text('Parent Communication'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        ParentCommunicationTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //parent communication
-              ListTile(
-                leading: const Icon(Icons.schedule),
-                title: Text('My Timetable'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => MyTimetableTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //my timetable
-              ListTile(
-                leading: const Icon(Icons.calendar_today),
-                title: Text('View Proxy'),
-                onTap: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => ViewProxyTeacher(),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              ), //view proxy
-            ],
+                ListTile(
+                    leading: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Close',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ),
           ),
         ),
       ),
