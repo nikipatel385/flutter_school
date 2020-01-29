@@ -87,32 +87,6 @@ class _FeesParentState extends State<FeesParent> {
           ],
         ),
       ),
-//        Padding(
-//          padding: EdgeInsets.all(15.0),
-//          child: Column(
-//            children: <Widget>[
-//              Padding(
-//                padding: EdgeInsets.only(top: 10.0),
-//                child: Center(
-//                  child: Text(
-//                    'Make a payment',
-//                    style: TextStyle(
-//                        color: Colors.indigo,
-//                        inherit: true,
-//                        fontSize: 40.0,
-//                        fontWeight: FontWeight.bold,
-//                        fontFamily: 'FredokaOne-Regular'),
-//                  ),
-//                ),
-//              ),
-//              Padding(
-//                padding: EdgeInsets.only(top: 10.0),
-//                child: Center(
-//                ),
-//              )
-//            ],
-//          ),
-//        )
     );
   }
 
