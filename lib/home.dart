@@ -54,21 +54,21 @@ class _HomeState extends State<Home> {
   }
 
 //  Future cekLogin() async {
-
+//
 //    SharedPreferences pref = await SharedPreferences.getInstance();
-
+//
 //    if (pref.getBool('isLogin')) {
-
+//
 //      Navigator.of(context).pushAndRemoveUntil(
-
+//
 //          new MaterialPageRoute(
-
+//
 //              builder: (BuildContext context) => new LoginPage()),
-
+//
 //          (Route<dynamic> route) => false);
-
+//
 //    }
-
+//
 //  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
