@@ -31,7 +31,7 @@ class _FeesParentState extends State<FeesParent> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40.0,left: 20.0),
+              padding: EdgeInsets.only(top: 40.0, left: 20.0),
               child: Center(
                 child: Text(
                   "Please don't exit the app or don't press back button until transaction has been completed.",
