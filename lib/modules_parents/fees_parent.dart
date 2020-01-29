@@ -14,45 +14,77 @@ class _FeesParentState extends State<FeesParent> {
         title: Text('Fees'),
       ),
       body: Center(
-        child: Builder(
-          builder: (context) => SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10),
-              child: InkWell(
-                onTap: () => _pay(context),
-                child: Card(
-                  color: Colors.indigo,
-                  elevation: 15,
-                  child: Container(
-                    height: 250,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "Card Payment",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+              child: Center(
+                child: Text(
+                  'Make a payment',
+                  style: TextStyle(
+                      color: Colors.black,
+                      inherit: true,
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'FredokaOne-Regular'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 40.0,left: 20.0),
+              child: Center(
+                child: Text(
+                  "Please don't exit the app or don't press back button until transaction has been completed.",
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 70.0),
+              child: Center(
+                child: Builder(
+                  builder: (context) => SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
+                      child: InkWell(
+                        onTap: () => _pay(context),
+                        child: Card(
+                          color: Colors.indigo,
+                          elevation: 15,
+                          child: Container(
+                            height: 250,
+                            width: MediaQuery.of(context).size.width,
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "Card Payment",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(
+                                    Icons.payment,
+                                    color: Colors.black,
+                                    size: 30,
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.payment,
-                            color: Colors.black,
-                            size: 30,
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
 //        Padding(
