@@ -163,81 +163,81 @@ class _HomeState extends State<Home> {
               ),
 
 //              Padding(
-
+//
 //                  padding: EdgeInsets.only(top: _minpadding * 3),
-
+//
 //                  child: Container(
-
+//
 //                    margin: EdgeInsets.only(left: 100.0, right: 100.0),
-
+//
 //                    child: RaisedButton(
-
+//
 //                      shape: RoundedRectangleBorder(
-
+//
 //                          borderRadius: BorderRadius.circular(30.0)),
-
+//
 //                      color: Theme.of(context).accentColor,
-
+//
 //                      textColor: Theme.of(context).primaryColorDark,
-
+//
 //                      child: const Text(
-
+//
 //                        'Submit',
-
+//
 //                        style: TextStyle(color: Colors.white),
-
+//
 //                      ),
-
+//
 //                      onPressed: () {
-
+//
 //                        _navigator();
-
+//
 //                      },
-
+//
 //                    ),
-
+//
 //                  )),
-
+//
 //                    child: RaisedButton (
-
+//
 //                        color: Theme.of(context).accentColor,
-
+//
 //                        textColor: Theme.of(context).primaryColorDark,
-
+//
 //                        child: const Text(
-
+//
 //                          'Submit',
-
+//
 //                          style: TextStyle(color: Colors.white),
-
+//
 //                        ),
-
+//
 //                        onPressed: () {
-
+//
 //                          if (_formKey.currentState.validate()) {
-
 //
-
+//
+//
 //                            Future<SharedPreferences> pref = SharedPreferences.getInstance();
-
 //
-
 //
-
 //
-
+//
+//
+//
+//
 //                            var route = MaterialPageRoute(
-
-//                              builder: (BuildContext context) => LoginPage(),
-
-//                            );
-
 //
-
+//                              builder: (BuildContext context) => LoginPage(),
+//
+//                            );
+//
+//
+//
 //                            Navigator.of(context).push(route);
-
+//
 //                          }
-
+//
 //                        }),
             ],
           ),
