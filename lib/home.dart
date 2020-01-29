@@ -199,38 +199,38 @@ class _HomeState extends State<Home> {
     ));
   }
 
-  void _navigator() async {
-    if (_formKey.currentState.validate()) {
-//      SharedPreferences pref = await SharedPreferences.getInstance();
-
-//      pref.setBool('isLogin', true);
-
-      Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(
-              builder: (BuildContext context) => new LoginPage()),
-          (Route<dynamic> route) => false);
-    } else {
-//      SharedPreferences pref = await SharedPreferences.getInstance();
-
-//      pref.setBool("isLogin", false);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          child: new AlertDialog(
-            title: Text('Select'),
-            content: new Text(
-              "please select Your school",
-              style: new TextStyle(fontSize: 16.0),
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: new Text("OK"))
-            ],
-          ));
-    }
-  }
+//  void _navigator() async {
+//    if (_formKey.currentState.validate()) {
+////      SharedPreferences pref = await SharedPreferences.getInstance();
+//
+////      pref.setBool('isLogin', true);
+//
+//      Navigator.of(context).pushAndRemoveUntil(
+//          new MaterialPageRoute(
+//              builder: (BuildContext context) => new LoginPage()),
+//          (Route<dynamic> route) => false);
+//    } else {
+////      SharedPreferences pref = await SharedPreferences.getInstance();
+//
+////      pref.setBool("isLogin", false);
+//
+//      showDialog(
+//          context: context,
+//          barrierDismissible: false,
+//          child: new AlertDialog(
+//            title: Text('Select'),
+//            content: new Text(
+//              "please select Your school",
+//              style: new TextStyle(fontSize: 16.0),
+//            ),
+//            actions: <Widget>[
+//              new FlatButton(
+//                  onPressed: () {
+//                    Navigator.pop(context);
+//                  },
+//                  child: new Text("OK"))
+//            ],
+//          ));
+//    }
+//  }
 }
