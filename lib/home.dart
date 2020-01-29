@@ -20,16 +20,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static final String url =
-      'http://apps.triz.co.in/app_teacher_school_list.php';
+  static final String url = 'http://202.47.117.124/schoolList?type=API';
 
   static final auth = 'Trizinno2019';
 
   List data;
 
   Future<String> getJSONdata() async {
-    var response =
-        await http.get(Uri.encodeFull(url), headers: {"auth": "Trizinno2019"});
+    var response = await http.get(Uri.encodeFull(url));
 
     print(response.body);
 
@@ -95,7 +93,6 @@ class _HomeState extends State<Home> {
                   height: 100.0,
                 ),
               ),
-
               Padding(
                   padding: EdgeInsets.only(top: _minpadding),
                   child: Center(
@@ -115,7 +112,6 @@ class _HomeState extends State<Home> {
                           color: Colors.teal),
                     ),
                   )),
-
               Padding(
                 padding: EdgeInsets.only(top: _minpadding * 25),
                 child: TypeAheadFormField(
@@ -135,20 +131,19 @@ class _HomeState extends State<Home> {
                       return data;
                     },
                     itemBuilder: (context, suggestion) {
-                      return ListTile(title: Text(suggestion['SCHOOL_NAME']));
+                      return ListTile(title: Text(suggestion['SchoolName']));
                     },
                     transitionBuilder: (context, suggestionsBox, controller) {
                       return suggestionsBox;
                     },
                     onSuggestionSelected: (suggestion) {
-                      this._typeAheadController.text =
-                          suggestion['SCHOOL_NAME'];
+                      this._typeAheadController.text = suggestion['SchoolName'];
 
                       if (this._typeAheadController.text ==
-                          suggestion['SCHOOL_NAME']) {
+                          suggestion['SchoolName']) {
                         var route = MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                LoginPage(logo: suggestion['SCHOOL_LOGO']));
+                                LoginPage(logo: suggestion['Logo']));
 
                         Navigator.of(context).push(route);
                       }
@@ -161,123 +156,10 @@ class _HomeState extends State<Home> {
                       }
                     }),
               ),
-
-//              Padding(
-//
-//                  padding: EdgeInsets.only(top: _minpadding * 3),
-//
-//                  child: Container(
-//
-//                    margin: EdgeInsets.only(left: 100.0, right: 100.0),
-//
-//                    child: RaisedButton(
-//
-//                      shape: RoundedRectangleBorder(
-//
-//                          borderRadius: BorderRadius.circular(30.0)),
-//
-//                      color: Theme.of(context).accentColor,
-//
-//                      textColor: Theme.of(context).primaryColorDark,
-//
-//                      child: const Text(
-//
-//                        'Submit',
-//
-//                        style: TextStyle(color: Colors.white),
-//
-//                      ),
-//
-//                      onPressed: () {
-//
-//                        _navigator();
-//
-//                      },
-//
-//                    ),
-//
-//                  )),
-//
-//                    child: RaisedButton (
-//
-//                        color: Theme.of(context).accentColor,
-//
-//                        textColor: Theme.of(context).primaryColorDark,
-//
-//                        child: const Text(
-//
-//                          'Submit',
-//
-//                          style: TextStyle(color: Colors.white),
-//
-//                        ),
-//
-//                        onPressed: () {
-//
-//                          if (_formKey.currentState.validate()) {
-//
-//
-//
-//                            Future<SharedPreferences> pref = SharedPreferences.getInstance();
-//
-//
-//
-//
-//
-//
-//
-//                            var route = MaterialPageRoute(
-//
-//                              builder: (BuildContext context) => LoginPage(),
-//
-//                            );
-//
-//
-//
-//                            Navigator.of(context).push(route);
-//
-//                          }
-//
-//                        }),
             ],
           ),
         ),
       ),
     ));
-  }
-
-  void _navigator() async {
-    if (_formKey.currentState.validate()) {
-//      SharedPreferences pref = await SharedPreferences.getInstance();
-
-//      pref.setBool('isLogin', true);
-
-      Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(
-              builder: (BuildContext context) => new LoginPage()),
-          (Route<dynamic> route) => false);
-    } else {
-//      SharedPreferences pref = await SharedPreferences.getInstance();
-
-//      pref.setBool("isLogin", false);
-
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          child: new AlertDialog(
-            title: Text('Select'),
-            content: new Text(
-              "please select Your school",
-              style: new TextStyle(fontSize: 16.0),
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: new Text("OK"))
-            ],
-          ));
-    }
   }
 }
