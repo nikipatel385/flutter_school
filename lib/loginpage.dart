@@ -279,9 +279,9 @@ class _LoginPageState extends State<LoginPage> {
                                       ParentsPage(),
                                 );
                                 Navigator.of(context).push(route);
-                                print('correct');
+                                print('correct data');
                               } else {
-                                print('Incorrect');
+                                print('Incorrect data');
                               }
                             }),
                       )),

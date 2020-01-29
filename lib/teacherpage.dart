@@ -103,7 +103,7 @@ class _TeacherPageState extends State<TeacherPage> {
                 ), //homework/assignment
                 ListTile(
                   leading: const Icon(
-                    Icons.people,
+                    Icons.people_outline,
                     color: Colors.white,
                   ),
                   title: Text(
@@ -256,7 +256,7 @@ class _TeacherPageState extends State<TeacherPage> {
                 child: Column(
                   children: <Widget>[
                     Icon(
-                      Icons.people,
+                      Icons.people_outline,
                       size: 80.0,
                       color: Colors.indigo,
                     ),
