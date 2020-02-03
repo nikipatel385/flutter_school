@@ -20,14 +20,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static final String url = 'http://202.47.117.124/schoolList?type=API';
+  static final String url =
+      'http://apps.triz.co.in/app_teacher_school_list.php';
 
+//      'http://202.47.117.124/schoolList?type=API';
   static final auth = 'Trizinno2019';
 
   List data;
 
   Future<String> getJSONdata() async {
-    var response = await http.get(Uri.encodeFull(url));
+    var response = await http.get(Uri.encodeFull(url),headers: {"auth": "Trizinno2019"});
 
     print(response.body);
 
@@ -133,19 +135,19 @@ class _HomeState extends State<Home> {
                       return data;
                     },
                     itemBuilder: (context, suggestion) {
-                      return ListTile(title: Text(suggestion['SchoolName']));
+                      return ListTile(title: Text(suggestion['SCHOOL_NAME']));
                     },
                     transitionBuilder: (context, suggestionsBox, controller) {
                       return suggestionsBox;
                     },
                     onSuggestionSelected: (suggestion) {
-                      this._typeAheadController.text = suggestion['SchoolName'];
+                      this._typeAheadController.text = suggestion['SCHOOL_NAME'];
 
                       if (this._typeAheadController.text ==
-                          suggestion['SchoolName']) {
+                          suggestion['SCHOOL_NAME']) {
                         var route = MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                LoginPage(logo: suggestion['Logo']));
+                                LoginPage(logo: suggestion['SCHOOL_LOGO']));
 
                         Navigator.of(context).push(route);
                       }
