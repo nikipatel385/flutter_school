@@ -41,6 +41,18 @@ class _ProfileParentState extends State<ProfileParent> {
               ),
             )),
           ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: Center(
+              child: Text(
+                'Niki Patel',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
+              ),
+            ),
+          )
         ],
       ),
     );

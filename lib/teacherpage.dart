@@ -177,8 +177,8 @@ class _TeacherPageState extends State<TeacherPage> {
           children: <Widget>[
             GestureDetector(
               child: new Card(
-                elevation: 3.0,
-                child: Column(
+                elevation: 5.0,
+                child: ListView(
                   children: <Widget>[
                     Icon(
                       Icons.person,
