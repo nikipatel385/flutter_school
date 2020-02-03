@@ -12,8 +12,6 @@ import 'modules_teacher/my_timetable_teacher.dart';
 
 import 'modules_teacher/assign_homework_teacher.dart';
 
-import 'package:flutter_school/loginpage.dart';
-
 class TeacherPage extends StatefulWidget {
   @override
   _TeacherPageState createState() => _TeacherPageState();
