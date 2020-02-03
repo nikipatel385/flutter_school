@@ -19,7 +19,6 @@ import 'modules_parents/result_parent.dart';
 
 import 'modules_parents/timetable_parent.dart';
 
-
 class ParentsPage extends StatefulWidget {
   @override
   _ParentsPageState createState() => _ParentsPageState();
