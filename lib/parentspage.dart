@@ -231,7 +231,7 @@ class _ParentsPageState extends State<ParentsPage> {
           children: <Widget>[
             GestureDetector(
               child: new Card(
-                elevation: 3.0,
+                elevation: 5.0,
                 child: Column(
                   children: <Widget>[
                     Icon(
