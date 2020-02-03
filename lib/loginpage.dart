@@ -281,6 +281,23 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.of(context).push(route);
                                 print('correct data');
                               } else {
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    child: new AlertDialog(
+                                      title: Text('User not found'),
+                                      content: new Text(
+                                        "Please! Enter valid data",
+                                        style: new TextStyle(fontSize: 16.0),
+                                      ),
+                                      actions: <Widget>[
+                                        new FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: new Text("OK"))
+                                      ],
+                                    ));
                                 print('Incorrect data');
                               }
                             }),
