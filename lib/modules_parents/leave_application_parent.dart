@@ -7,6 +7,8 @@ class LeaveApplicationParent extends StatefulWidget {
 
 class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController startdateController = TextEditingController();
+  TextEditingController enddateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                 padding: EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    controller: startdateController,
                     keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -53,6 +56,19 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                         return 'Please enter date';
                       }
                       return null;
+                    },
+                    onTap: () async {
+                      DateTime date = DateTime(1950);
+                      FocusScope.of(context).requestFocus(FocusNode());
+
+                      date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1950),
+                          lastDate: DateTime(2030));
+                      var formattedDate =
+                          "${date.day}-${date.month}-${date.year}";
+                      startdateController.text = formattedDate;
                     },
                   ),
                 ),
@@ -73,6 +89,19 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                       }
                       return null;
                     },
+                    onTap: () async {
+                      DateTime date = DateTime(1950);
+                      FocusScope.of(context).requestFocus(FocusNode());
+
+                      date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1950),
+                          lastDate: DateTime(2030));
+                      var formattedDate =
+                          "${date.day}-${date.month}-${date.year}";
+                      enddateController.text = formattedDate;
+                    },
                   ),
                 ),
               ),
@@ -81,7 +110,6 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                 child: Container(
                   child: TextFormField(
                     keyboardType: TextInputType.multiline,
-                    minLines: 1,
                     maxLines: 5,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -112,9 +140,7 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                   ),
                   onPressed: () => {
                     if (_formKey.currentState.validate())
-                      {
-                        print('valid application')
-                      }
+                      {print('valid application')}
                   },
                   splashColor: Colors.redAccent,
                 ),
