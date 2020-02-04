@@ -44,6 +44,7 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                 padding: EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -62,6 +63,7 @@ class _LeaveApplicationParentState extends State<LeaveApplicationParent> {
                 padding: EdgeInsets.all(8.0),
                 child: Container(
                   child: TextFormField(
+                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30.0)),
