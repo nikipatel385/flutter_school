@@ -131,8 +131,11 @@ class _HomeState extends State<Home> {
                           hintText: 'Select Your School'),
                     ),
                     debounceDuration: const Duration(milliseconds: 300),
-                    suggestionsCallback: (pattern) {
-                      return data;
+                    suggestionsCallback: (String pattern) async {
+                      List matches = List();
+                      matches.addAll(data);
+                      matches.where((item)=>item.toLowerCase().contains(pattern.toLowerCase()));
+                      return matches;
                     },
                     itemBuilder: (context, suggestion) {
                       return ListTile(title: Text(suggestion['SCHOOL_NAME']));
