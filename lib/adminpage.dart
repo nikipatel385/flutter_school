@@ -54,11 +54,110 @@ class _AdminPageState extends State<AdminPage> {
               ),
               Divider(),
               ListTile(
-                  title: Text("Log Out"),
-                  trailing: const Icon(Icons.power_settings_new),
-                  onTap: () {})
+                  leading: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    'Close',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
             ],
           ),
+        ),
+        body: GridView.count(
+          padding: EdgeInsets.all(8.0),
+          crossAxisCount: 3,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          children: <Widget>[
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ), //profile
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[],
+                ),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: new Card(
+                elevation: 5.0,
+                child: ListView(
+                  children: <Widget>[
+
+                  ],
+                ),
+              ),
+              onTap: () {},
+            ),
+          ],
         ),
       ),
     );
