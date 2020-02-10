@@ -31,41 +31,40 @@ class _AdminPageState extends State<AdminPage> {
       child: Scaffold(
         appBar: AppBar(),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                accountName: Text('Niki Patel'),
-                accountEmail: Text('nikipatel385@gmail.com'),
-                currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    'N',
-                    style: TextStyle(fontSize: 25.0),
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text('Setting'),
-                trailing: const Icon(Icons.settings),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              Divider(),
-              ListTile(
+          child: Container(
+            color: Colors.indigo,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                ListTile(),
+                ListTile(
                   leading: const Icon(
-                    Icons.close,
+                    Icons.calendar_today,
                     color: Colors.white,
                   ),
                   title: Text(
-                    'Close',
+                    'View Proxy',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  }),
-            ],
+                  onTap: () {},
+                ), //view proxy
+                Divider(
+                  color: Colors.white,
+                ),
+                ListTile(
+                    leading: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Close',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ),
           ),
         ),
         body: GridView.count(
