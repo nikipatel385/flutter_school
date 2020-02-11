@@ -10,7 +10,7 @@ import 'package:flutter_school/teacherpage.dart';
 
 import 'package:flutter_school/adminpage.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   final String logo;
@@ -100,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController pswdController = TextEditingController();
 
+  // ignore: unused_field
   String _password;
 
   @override
