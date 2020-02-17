@@ -273,6 +273,7 @@ class _LoginPageState extends State<LoginPage> {
                               'Get OTP',
                               style: TextStyle(color: Colors.white),
                             ),
+                            splashColor: Colors.redAccent,
                             onPressed: () {
                               if (this.phoneController.text == '9033456707') {
                                 var route = MaterialPageRoute(
@@ -317,6 +318,7 @@ class _LoginPageState extends State<LoginPage> {
                             'Submit',
                             style: TextStyle(color: Colors.white),
                           ),
+                          splashColor: Colors.redAccent,
                           onPressed: () {
                             if (_currentItemSelected == 'Teacher') {
                               if (_formKey.currentState.validate()) {
