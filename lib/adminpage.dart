@@ -72,14 +72,33 @@ class _AdminPageState extends State<AdminPage> {
                 ListTile(),
                 ListTile(
                   leading: const Icon(
-                    Icons.calendar_today,
+                    Icons.person,
                     color: Colors.white,
                   ),
                   title: Text(
-                    'View Proxy',
+                    'Profile',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => ProfileAdmin(
+                          imgs: widget.img,
+                          sufs: widget.suf,
+                          fns: widget.fn,
+                          mns: widget.mn,
+                          lns: widget.ln,
+                          emls: widget.eml,
+                          mobs: widget.mob,
+                          gens: widget.gen,
+                          dobs: widget.dob,
+                          adds: widget.add,
+                          citys: widget.city,
+                          states: widget.state,
+                          pins: widget.pin,
+                          dojs: widget.doj),
+                    );
+                    Navigator.of(context).push(route);
+                  },
                 ), //view proxy
                 Divider(
                   color: Colors.white,
