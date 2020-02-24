@@ -10,6 +10,8 @@ import 'package:flutter_school/teacherpage.dart';
 
 import 'package:flutter_school/adminpage.dart';
 
+import 'package:otp/otp.dart';
+
 //import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -90,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
   var _loginName = ['--Select--', 'Admin', 'Teacher', 'Parents'];
 
   final _minpadding = 5.0;
@@ -98,7 +101,11 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController phoneController = TextEditingController();
 
+  TextEditingController emailController = TextEditingController();
+
   TextEditingController pswdController = TextEditingController();
+
+  TextEditingController otpController = TextEditingController();
 
   // ignore: unused_field
   String _password;
@@ -108,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
 
     super.initState();
+    this.fetchadmin();
     this.fetchPost();
 
     // cekLogin();
@@ -130,7 +138,10 @@ class _LoginPageState extends State<LoginPage> {
 //    }
 
 //  }
-  var data;
+  var data, item;
+
+  var code = OTP.generateTOTPCode(
+      "JBSWY3DPEHPK3PXP", DateTime.now().millisecondsSinceEpoch);
 
   // ignore: missing_return
   Future<String> fetchPost() async {
@@ -144,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
 
       data = dataToJson['status_code'];
       print(data);
+      print(code);
     });
     if (data == 1) {
       print('Valid');
@@ -151,6 +163,21 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       print('Invalid');
     }
+  }
+
+  // ignore: missing_return
+  Future<String> fetchadmin() async {
+    final res = await http.post(Uri.encodeFull('http://202.47.117.124/login'),
+        body: {"email": "admin@mlzs.com", "password": "123456", "type": "API"});
+    //print(res.body);
+
+    setState(() {
+      var dataToJson = json.decode(res.body);
+
+      item = dataToJson['data'];
+
+      print(item['id']);
+    });
   }
 
   @override
@@ -200,36 +227,69 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: _minpadding * 3),
-                  child: TextFormField(
-                    controller: phoneController,
+                if (this._currentItemSelected == 'Parents')
+                  Padding(
+                    padding: EdgeInsets.only(top: _minpadding * 3),
+                    child: TextFormField(
+                      controller: phoneController,
 
-                    keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
 
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        ),
+                        prefixIcon: Icon(Icons.phone),
+                        hintText: 'Enter Your Mobile Number',
+                        labelText: 'Mobile Number',
                       ),
-                      prefixIcon: Icon(Icons.phone),
-                      hintText: 'Enter Your Mobile Number',
-                      labelText: 'Mobile Number',
-                    ),
 //                      onChanged: (value){
 //                        this.phoneNo = value;
 //                      },
 
-                    // ignore: missing_return
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please Enter Mobile Number';
-                        // ignore: missing_return
-                      } else if (value.length != 10) {
-                        return 'Invalid Phone Number';
-                      }
-                    },
+                      // ignore: missing_return
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please Enter Mobile Number';
+                          // ignore: missing_return
+                        } else if (value.length != 10) {
+                          return 'Invalid Phone Number';
+                        }
+                      },
+                    ),
                   ),
-                ),
+                if (this._currentItemSelected != 'Parents')
+                  Padding(
+                    padding: EdgeInsets.only(top: _minpadding * 3),
+                    child: TextFormField(
+                      controller: emailController,
+
+                      keyboardType: TextInputType.emailAddress,
+
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        ),
+                        prefixIcon: Icon(Icons.email),
+                        hintText: 'Enter Your Email ID',
+                        labelText: 'Email id',
+                      ),
+//                      onChanged: (value){
+//                        this.phoneNo = value;
+//                      },
+
+                      // ignore: missing_return
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please Enter email id';
+                        }
+                        // ignore: missing_return
+//                         else if (value.length != 10) {
+//                          return 'Invalid Email id';
+//                        }
+                      },
+                    ),
+                  ),
                 if (this._currentItemSelected != 'Parents')
                   Padding(
                     padding: EdgeInsets.only(top: _minpadding * 3),
@@ -276,12 +336,83 @@ class _LoginPageState extends State<LoginPage> {
                             splashColor: Colors.redAccent,
                             onPressed: () {
                               if (this.phoneController.text == '9033456707') {
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ParentsPage(),
-                                );
-                                Navigator.of(context).push(route);
-                                print('correct data');
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    child: AlertDialog(
+                                      title: Text('User not found'),
+                                      content: Form(
+                                        key: _form,
+                                        autovalidate: true,
+                                        child: TextFormField(
+                                          controller: otpController,
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                            hintText: 'Enter Your OTP',
+                                          ),
+                                          // ignore: missing_return
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return 'Please Enter otp';
+                                            }
+                                            // ignore: missing_return
+//                                          } else if (value.length != 6) {
+//                                            return 'Invalid otp';
+//                                          }
+                                          },
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('Cancel'),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        ),
+                                        FlatButton(
+                                            child: Text('OK'),
+                                            onPressed: () {
+                                              if (_form.currentState
+                                                  .validate()) {
+                                                if (this.otpController.text ==
+                                                    code.toString()) {
+                                                  var route = MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        ParentsPage(),
+                                                  );
+                                                  Navigator.of(context)
+                                                      .push(route);
+                                                  print('correct data');
+                                                } else if (this
+                                                        .otpController
+                                                        .text !=
+                                                    code.toString()) {
+                                                  final snackBar = SnackBar(
+                                                    content: Text(
+                                                        'Yay! A SnackBar!'),
+                                                    action: SnackBarAction(
+                                                      label: 'Undo',
+                                                      onPressed: () {
+                                                        // Some code to undo the change.
+                                                      },
+                                                    ),
+                                                  );
+
+                                                  // Find the Scaffold in the widget tree and use
+                                                  // it to show a SnackBar.
+                                                  Scaffold.of(context)
+                                                      .showSnackBar(snackBar);
+                                                }
+                                              }
+                                            }),
+                                      ],
+                                    ));
+//                                var route = MaterialPageRoute(
+//                                  builder: (BuildContext context) =>
+//                                      ParentsPage(),
+//                                );
+//                                Navigator.of(context).push(route);
+//                                print('correct data');
                               } else {
                                 showDialog(
                                     context: context,
@@ -338,13 +469,31 @@ class _LoginPageState extends State<LoginPage> {
 //                                SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                                pref.setBool('isLogin', true);
+                                if (this.emailController.text ==
+                                        item['email'] &&
+                                    this.pswdController.text ==
+                                        item['password']) {
+                                  var route = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AdminPage(
+                                            img: item['image'],
+                                            suf: item['name_suffix'],
+                                            fn: item['first_name'],
+                                            mn: item['middle_name'],
+                                            ln: item['last_name'],
+                                            eml: item['email'],
+                                            mob: item['mobile'],
+                                            gen: item['gender'],
+                                            dob: item['birthdate'],
+                                            add: item['address'],
+                                            city: item['city'],
+                                            state: item['state'],
+                                            pin: item['pincode'],
+                                            doj: item['join_year']),
+                                  );
 
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      AdminPage(),
-                                );
-
-                                Navigator.of(context).push(route);
+                                  Navigator.of(context).push(route);
+                                }
                               }
                             }
 //                            else if (_currentItemSelected == 'Parents') {

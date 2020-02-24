@@ -1,6 +1,39 @@
 import 'package:flutter/material.dart';
 
+import 'modules_admin/profile_admin.dart';
+
 class AdminPage extends StatefulWidget {
+  final String img,
+      suf,
+      fn,
+      mn,
+      ln,
+      eml,
+      mob,
+      gen,
+      dob,
+      add,
+      city,
+      state,
+      pin,
+      doj;
+
+  AdminPage(
+      {this.img,
+      this.suf,
+      this.fn,
+      this.mn,
+      this.ln,
+      this.eml,
+      this.mob,
+      this.gen,
+      this.dob,
+      this.add,
+      this.city,
+      this.state,
+      this.pin,
+      this.doj});
+
   @override
   _AdminPageState createState() => _AdminPageState();
 }
@@ -77,10 +110,40 @@ class _AdminPageState extends State<AdminPage> {
               child: new Card(
                 elevation: 5.0,
                 child: ListView(
-                  children: <Widget>[],
+                  children: <Widget>[
+                    Icon(
+                      Icons.person,
+                      size: 80.0,
+                      color: Colors.indigo,
+                    ),
+                    Center(
+                        child: Text(
+                      'Profile',
+                      style: TextStyle(color: Colors.indigo),
+                    )),
+                  ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                var route = MaterialPageRoute(
+                  builder: (BuildContext context) => ProfileAdmin(
+                      imgs: widget.img,
+                      sufs: widget.suf,
+                      fns: widget.fn,
+                      mns: widget.mn,
+                      lns: widget.ln,
+                      emls: widget.eml,
+                      mobs: widget.mob,
+                      gens: widget.gen,
+                      dobs: widget.dob,
+                      adds: widget.add,
+                      citys: widget.city,
+                      states: widget.state,
+                      pins: widget.pin,
+                      dojs: widget.doj),
+                );
+                Navigator.of(context).push(route);
+              },
             ), //profile
             GestureDetector(
               child: new Card(
@@ -149,9 +212,7 @@ class _AdminPageState extends State<AdminPage> {
               child: new Card(
                 elevation: 5.0,
                 child: ListView(
-                  children: <Widget>[
-
-                  ],
+                  children: <Widget>[],
                 ),
               ),
               onTap: () {},
