@@ -169,14 +169,14 @@ class _LoginPageState extends State<LoginPage> {
   Future<String> fetchadmin() async {
     final res = await http.post(Uri.encodeFull('http://202.47.117.124/login'),
         body: {"email": "admin@mlzs.com", "password": "123456", "type": "API"});
-    //print(res.body);
+    print(res.body);
 
     setState(() {
       var dataToJson = json.decode(res.body);
 
       item = dataToJson['data'];
 
-      print(item['id']);
+      print(item);
     });
   }
 
