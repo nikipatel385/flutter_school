@@ -99,7 +99,7 @@ class _AdminPageState extends State<AdminPage> {
                     );
                     Navigator.of(context).push(route);
                   },
-                ), //view proxy
+                ), //profile
                 Divider(
                   color: Colors.white,
                 ),
