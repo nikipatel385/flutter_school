@@ -13,6 +13,23 @@ import 'modules_teacher/my_timetable_teacher.dart';
 import 'modules_teacher/assign_homework_teacher.dart';
 
 class TeacherPage extends StatefulWidget {
+  final String img, fn, mn, ln, eml, mob, gen, dob, add, city, state, pin, doj;
+
+  TeacherPage(
+      {this.img,
+      this.fn,
+      this.mn,
+      this.ln,
+      this.eml,
+      this.mob,
+      this.gen,
+      this.dob,
+      this.add,
+      this.city,
+      this.state,
+      this.pin,
+      this.doj});
+
   @override
   _TeacherPageState createState() => _TeacherPageState();
 }
@@ -60,7 +77,20 @@ class _TeacherPageState extends State<TeacherPage> {
                   ),
                   onTap: () {
                     var route = MaterialPageRoute(
-                      builder: (BuildContext context) => ProfileTeacher(),
+                      builder: (BuildContext context) => ProfileTeacher(
+                          imgs: widget.img,
+                          fns: widget.fn,
+                          mns: widget.mn,
+                          lns: widget.ln,
+                          emls: widget.eml,
+                          mobs: widget.mob,
+                          gens: widget.gen,
+                          dobs: widget.dob,
+                          adds: widget.add,
+                          citys: widget.city,
+                          states: widget.state,
+                          pins: widget.pin,
+                          dojs: widget.doj),
                     );
                     Navigator.of(context).push(route);
                   },
@@ -193,7 +223,20 @@ class _TeacherPageState extends State<TeacherPage> {
               ),
               onTap: () {
                 var route = MaterialPageRoute(
-                  builder: (BuildContext context) => ProfileTeacher(),
+                  builder: (BuildContext context) => ProfileTeacher(
+                      imgs: widget.img,
+                      fns: widget.fn,
+                      mns: widget.mn,
+                      lns: widget.ln,
+                      emls: widget.eml,
+                      mobs: widget.mob,
+                      gens: widget.gen,
+                      dobs: widget.dob,
+                      adds: widget.add,
+                      citys: widget.city,
+                      states: widget.state,
+                      pins: widget.pin,
+                      dojs: widget.doj),
                 );
                 Navigator.of(context).push(route);
               },
@@ -205,7 +248,7 @@ class _TeacherPageState extends State<TeacherPage> {
                   children: <Widget>[
                     Icon(
                       Icons.fingerprint,
-                      size: 80.0,
+                      size: 70.0,
                       color: Colors.indigo,
                     ),
                     Center(
@@ -230,7 +273,7 @@ class _TeacherPageState extends State<TeacherPage> {
                   children: <Widget>[
                     Icon(
                       Icons.assignment,
-                      size: 80.0,
+                      size: 70.0,
                       color: Colors.indigo,
                     ),
                     Center(
@@ -255,7 +298,7 @@ class _TeacherPageState extends State<TeacherPage> {
                   children: <Widget>[
                     Icon(
                       Icons.people_outline,
-                      size: 80.0,
+                      size: 70.0,
                       color: Colors.indigo,
                     ),
                     Center(

@@ -29,7 +29,8 @@ class _HomeState extends State<Home> {
   List data;
 
   Future<String> getJSONdata() async {
-    var response = await http.get(Uri.encodeFull(url),headers: {"auth": "Trizinno2019"});
+    var response =
+        await http.get(Uri.encodeFull(url), headers: {"auth": "Trizinno2019"});
 
     print(response.body);
 
@@ -37,6 +38,7 @@ class _HomeState extends State<Home> {
       var dataConvertedToJSON = json.decode(response.body);
 
       data = dataConvertedToJSON['data'];
+      print(data);
     });
 
     return 'successful';
@@ -47,7 +49,6 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
 
     super.initState();
-
     this.getJSONdata();
 
     // cekLogin();
@@ -134,7 +135,8 @@ class _HomeState extends State<Home> {
                     suggestionsCallback: (String pattern) async {
                       List matches = List();
                       matches.addAll(data);
-                      matches.where((item)=>item.toLowerCase().contains(pattern.toLowerCase()));
+                      matches.where((item) =>
+                          item.toLowerCase().contains(pattern.toLowerCase()));
                       return matches;
                     },
                     itemBuilder: (context, suggestion) {
@@ -144,7 +146,8 @@ class _HomeState extends State<Home> {
                       return suggestionsBox;
                     },
                     onSuggestionSelected: (suggestion) {
-                      this._typeAheadController.text = suggestion['SCHOOL_NAME'];
+                      this._typeAheadController.text =
+                          suggestion['SCHOOL_NAME'];
 
                       if (this._typeAheadController.text ==
                           suggestion['SCHOOL_NAME']) {

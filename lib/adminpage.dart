@@ -3,24 +3,10 @@ import 'package:flutter/material.dart';
 import 'modules_admin/profile_admin.dart';
 
 class AdminPage extends StatefulWidget {
-  final String img,
-      suf,
-      fn,
-      mn,
-      ln,
-      eml,
-      mob,
-      gen,
-      dob,
-      add,
-      city,
-      state,
-      pin,
-      doj;
+  final String img, fn, mn, ln, eml, mob, gen, dob, add, city, state, pin, doj;
 
   AdminPage(
       {this.img,
-      this.suf,
       this.fn,
       this.mn,
       this.ln,
@@ -83,7 +69,6 @@ class _AdminPageState extends State<AdminPage> {
                     var route = MaterialPageRoute(
                       builder: (BuildContext context) => ProfileAdmin(
                           imgs: widget.img,
-                          sufs: widget.suf,
                           fns: widget.fn,
                           mns: widget.mn,
                           lns: widget.ln,
@@ -147,7 +132,6 @@ class _AdminPageState extends State<AdminPage> {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => ProfileAdmin(
                       imgs: widget.img,
-                      sufs: widget.suf,
                       fns: widget.fn,
                       mns: widget.mn,
                       lns: widget.ln,

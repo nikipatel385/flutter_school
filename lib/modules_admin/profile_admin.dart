@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ProfileAdmin extends StatefulWidget {
   final String imgs,
-      sufs,
       fns,
       mns,
       lns,
@@ -18,7 +17,6 @@ class ProfileAdmin extends StatefulWidget {
 
   ProfileAdmin(
       {this.imgs,
-      this.sufs,
       this.fns,
       this.mns,
       this.lns,
@@ -68,47 +66,40 @@ class _ProfileAdminState extends State<ProfileAdmin> {
               )),
             ),
             Padding(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.only(left: 95.0),
-                        child: Text(
-                          widget.sufs,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.0),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          widget.fns,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.0),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          widget.mns,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.0),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          widget.lns,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.0),
-                        )),
-                  ],
-                )),
+              padding: EdgeInsets.only(top: 10.0),
+              child: Center(
+                  child: Row(
+                children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(left: 95.0),
+                      child: Center(child: Text(
+                        widget.fns,
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      )),),
+                  Padding(
+                      padding: EdgeInsets.only(left: 4.0),
+                      child: Text(
+                        widget.mns,
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: 4.0),
+                      child: Text(
+                        widget.lns,
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      )),
+                ],
+              )),
+            ),
             Padding(
                 padding: EdgeInsets.only(top: 30.0, left: 10.0),
                 child: Row(children: <Widget>[
@@ -130,7 +121,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'MOBILE: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -145,7 +136,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'GENDER: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -160,7 +151,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'DATE OF BIRTH: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -175,14 +166,15 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'ADDRESS: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
-                  Expanded(child: Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        widget.adds,
-                        style: TextStyle(fontSize: 20.0),
-                      )))
+                  Expanded(
+                      child: Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            widget.adds,
+                            style: TextStyle(fontSize: 20.0),
+                          )))
                 ])),
             Padding(
                 padding: EdgeInsets.only(top: 15.0, left: 10.0),
@@ -190,7 +182,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'CITY: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -205,7 +197,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'STATE: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -220,7 +212,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'PINCODE: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),
@@ -235,7 +227,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                   Text(
                     'JOIN YEAR: ',
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                       padding: EdgeInsets.only(left: 10.0),

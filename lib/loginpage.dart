@@ -115,8 +115,9 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
 
     super.initState();
-    this.fetchadmin();
     this.fetchPost();
+
+    this.fetchstudent();
 
     // cekLogin();
   }
@@ -166,17 +167,34 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // ignore: missing_return
-  Future<String> fetchadmin() async {
+  Future<String> fetchadmin(String email, String password) async {
     final res = await http.post(Uri.encodeFull('http://202.47.117.124/login'),
-        body: {"email": "admin@mlzs.com", "password": "123456", "type": "API"});
-    print(res.body);
+        body: {"email": email, "password": password, "type": "API"});
+    //print(res.body);
 
     setState(() {
       var dataToJson = json.decode(res.body);
 
       item = dataToJson['data'];
 
-      print(item);
+      print(item['id']);
+    });
+  }
+
+  Future<String> fetchstudent() async {
+    final response = await http.post(
+        Uri.encodeFull('http://202.47.117.124/student/show_student_attendance'),
+        body: {
+          'standard_division': '77||22',
+          'date': '2020-02-2',
+          'type': 'API',
+          'term_id': '1',
+          'syear': "2019",
+          'sub_institute_id': '46'
+        });
+    setState(() {
+      var datatoJson = json.decode(response.body);
+      print(response.body);
     });
   }
 
@@ -456,28 +474,19 @@ class _LoginPageState extends State<LoginPage> {
 //                                SharedPreferences pref = await SharedPreferences.getInstance();
 
 //                                pref.setBool('isLogin', true);
+                                fetchadmin(
+                                    emailController.text, pswdController.text);
 
-                                var route = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TeacherPage(),
-                                );
-
-                                Navigator.of(context).push(route);
-                              }
-                            } else if (_currentItemSelected == 'Admin') {
-                              if (_formKey.currentState.validate()) {
-//                                SharedPreferences pref = await SharedPreferences.getInstance();
-
-//                                pref.setBool('isLogin', true);
                                 if (this.emailController.text ==
                                         item['email'] &&
                                     this.pswdController.text ==
-                                        item['password']) {
+                                        item['password'] &&
+                                    _currentItemSelected ==
+                                        item['user_profile']) {
                                   var route = MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        AdminPage(
+                                        TeacherPage(
                                             img: item['image'],
-                                            suf: item['name_suffix'],
                                             fn: item['first_name'],
                                             mn: item['middle_name'],
                                             ln: item['last_name'],
@@ -493,6 +502,79 @@ class _LoginPageState extends State<LoginPage> {
                                   );
 
                                   Navigator.of(context).push(route);
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      child: new AlertDialog(
+                                        title: Text('User not found'),
+                                        content: new Text(
+                                          "Please! Enter valid data",
+                                          style: new TextStyle(fontSize: 16.0),
+                                        ),
+                                        actions: <Widget>[
+                                          new FlatButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: new Text("OK"))
+                                        ],
+                                      ));
+                                  print('Incorrect data');
+                                }
+                              }
+                            } else if (_currentItemSelected == 'Admin') {
+                              if (_formKey.currentState.validate()) {
+//                                SharedPreferences pref = await SharedPreferences.getInstance();
+
+//                                pref.setBool('isLogin', true);
+                                fetchadmin(
+                                    emailController.text, pswdController.text);
+
+                                if (this.emailController.text ==
+                                        item['email'] &&
+                                    this.pswdController.text ==
+                                        item['password'] &&
+                                    _currentItemSelected ==
+                                        item['user_profile']) {
+                                  var route = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AdminPage(
+                                            img: item['image'],
+                                            fn: item['first_name'],
+                                            mn: item['middle_name'],
+                                            ln: item['last_name'],
+                                            eml: item['email'],
+                                            mob: item['mobile'],
+                                            gen: item['gender'],
+                                            dob: item['birthdate'],
+                                            add: item['address'],
+                                            city: item['city'],
+                                            state: item['state'],
+                                            pin: item['pincode'],
+                                            doj: item['join_year']),
+                                  );
+
+                                  Navigator.of(context).push(route);
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      child: new AlertDialog(
+                                        title: Text('User not found'),
+                                        content: new Text(
+                                          "Please! Enter valid data",
+                                          style: new TextStyle(fontSize: 16.0),
+                                        ),
+                                        actions: <Widget>[
+                                          new FlatButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: new Text("OK"))
+                                        ],
+                                      ));
+                                  print('Incorrect data');
                                 }
                               }
                             }
