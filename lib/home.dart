@@ -38,7 +38,6 @@ class _HomeState extends State<Home> {
       var dataConvertedToJSON = json.decode(response.body);
 
       data = dataConvertedToJSON['data'];
-      print(data);
     });
 
     return 'successful';
