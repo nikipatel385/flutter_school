@@ -116,9 +116,6 @@ class _LoginPageState extends State<LoginPage> {
 
     super.initState();
     this.fetchPost();
-
-    this.fetchstudent();
-
     // cekLogin();
   }
 
@@ -181,23 +178,6 @@ class _LoginPageState extends State<LoginPage> {
       academicyear = dataToJson['academicYears'];
       print(academicyear);
       print(item);
-    });
-  }
-
-  Future<String> fetchstudent() async {
-    final response = await http.post(
-        Uri.encodeFull('http://202.47.117.124/student/show_student_attendance'),
-        body: {
-          'standard_division': '77||22',
-          'date': '2020-02-2',
-          'type': 'API',
-          'term_id': '1',
-          'syear': "2019",
-          'sub_institute_id': '46'
-        });
-    setState(() {
-      var datatoJson = json.decode(response.body);
-      print(response.body);
     });
   }
 

@@ -34,7 +34,28 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
 
       data = dataToJson['standardDivision'];
       print(data);
-      print(widget.syearList);
+    });
+  }
+
+  List studList = List();
+
+  // ignore: missing_return
+  Future<String> fetchShowAttendance() async {
+    var showAttendance = await http.post(
+        Uri.encodeFull('http://202.47.117.124/student/show_student_attendance'),
+        body: {
+          'standard_division': '77||22',
+          'date': '2020-02-24',
+          'type': 'API',
+          'term_id': '1',
+          'sub_institute_id': '46',
+          'syear': '2019'
+        });
+    print(showAttendance.body);
+    setState(() {
+      var dataToJson = json.decode(showAttendance.body);
+      studList =  dataToJson['student_data'];
+      print(studList);
     });
   }
 
@@ -44,6 +65,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
     super.initState();
     //   _controller = CalendarController();
     this.fetchStudentAttendance();
+    this.fetchShowAttendance();
   }
 
   // CalendarController _controller;
@@ -52,7 +74,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
 
   //var _studentClass = ['--Class--', 'Jrkg-A', 'Nursary-A'];
 
-  String _currentItemSelected,_currentYear;
+  String _currentItemSelected, _currentYear;
 
   //var year = ['--Year--', '2019'];
 
@@ -83,7 +105,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                           hint: Text(
                             '--Year--',
                             style:
-                            TextStyle(color: Colors.indigo, fontSize: 20.0),
+                                TextStyle(color: Colors.indigo, fontSize: 20.0),
                           ),
                           isDense: true,
                           items: widget.syearList.map((value) {
@@ -145,14 +167,11 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                 ],
               ),
               RaisedButton(
-                onPressed: (){
+                onPressed: () {
                   var route = MaterialPageRoute(
-                        builder: (BuildContext
-                        context) =>
-                            StudentList(),
-                      );
-                      Navigator.of(context)
-                          .push(route);
+                    builder: (BuildContext context) => StudentList(studlist: studList),
+                  );
+                  Navigator.of(context).push(route);
                 },
               )
 //            Calendarro(
