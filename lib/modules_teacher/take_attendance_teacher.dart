@@ -50,12 +50,11 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
 
   final _minpadding = 5.0;
 
-  var _studentClass = ['--Class--', 'Jrkg-A', 'Nursary-A'];
+  //var _studentClass = ['--Class--', 'Jrkg-A', 'Nursary-A'];
 
-  String _currentItemSelected;
+  String _currentItemSelected,_currentYear;
 
-  var year = ['--Year--', '2019'];
-  var _currentYear = '--Year--';
+  //var year = ['--Year--', '2019'];
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +80,17 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
+                          hint: Text(
+                            '--Year--',
+                            style:
+                            TextStyle(color: Colors.indigo, fontSize: 20.0),
+                          ),
                           isDense: true,
-                          items: year.map((String value) {
+                          items: widget.syearList.map((value) {
                             return DropdownMenuItem<String>(
-                              value: value,
+                              value: value['id'].toString(),
                               child: Text(
-                                value,
+                                value['syear'].toString(),
                                 style: TextStyle(
                                     color: Colors.indigo, fontSize: 20.0),
                               ),
@@ -138,7 +142,20 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                       ),
                     ),
                   ),
-//                  Calendarro(
+                ],
+              ),
+              RaisedButton(
+                onPressed: (){
+                  var route = MaterialPageRoute(
+                        builder: (BuildContext
+                        context) =>
+                            StudentList(),
+                      );
+                      Navigator.of(context)
+                          .push(route);
+                },
+              )
+//            Calendarro(
 //                    onTap: (date){
 //                      var route = MaterialPageRoute(
 //                        builder: (BuildContext
@@ -149,8 +166,6 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
 //                          .push(route);
 //                    }
 //                  )
-                ],
-              ),
             ],
           ),
         ));

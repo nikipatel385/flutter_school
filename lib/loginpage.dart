@@ -178,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
       var dataToJson = json.decode(res.body);
 
       item = dataToJson['data'];
-      academicyear = dataToJson['academicTerms'];
+      academicyear = dataToJson['academicYears'];
       print(academicyear);
       print(item);
     });
