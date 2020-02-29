@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:calendarro/date_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:calendarro/calendarro.dart';
@@ -54,7 +55,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
     print(showAttendance.body);
     setState(() {
       var dataToJson = json.decode(showAttendance.body);
-      studList =  dataToJson['student_data'];
+      studList = dataToJson['student_data'];
       print(studList);
     });
   }
@@ -86,7 +87,6 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
                 children: <Widget>[
@@ -166,25 +166,30 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                   ),
                 ],
               ),
-              RaisedButton(
-                onPressed: () {
-                  var route = MaterialPageRoute(
-                    builder: (BuildContext context) => StudentList(studlist: studList),
-                  );
-                  Navigator.of(context).push(route);
-                },
-              )
-//            Calendarro(
-//                    onTap: (date){
-//                      var route = MaterialPageRoute(
-//                        builder: (BuildContext
-//                        context) =>
-//                            StudentList(),
-//                      );
-//                      Navigator.of(context)
-//                          .push(route);
-//                    }
-//                  )
+              Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: Calendarro(
+                  startDate: DateTime(2019,12,02),
+                  endDate: DateTime(2020,05,29),
+                  displayMode: DisplayMode.MONTHS,
+                  onTap: (date) {
+                    var route = MaterialPageRoute(
+                      builder: (BuildContext context) => StudentList(
+                        studlist: studList,
+                      ),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                ),
+              ),
+//              RaisedButton(
+//                onPressed: () {
+//                  var route = MaterialPageRoute(
+//                    builder: (BuildContext context) => StudentList(studlist: studList),
+//                  );
+//                  Navigator.of(context).push(route);
+//                },
+//              )
             ],
           ),
         ));
