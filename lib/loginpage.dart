@@ -166,6 +166,8 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  List academicyear = List();
+
   // ignore: missing_return
   Future<String> fetchadmin(String email, String password) async {
     final res = await http.post(Uri.encodeFull('http://202.47.117.124/login'),
@@ -176,8 +178,9 @@ class _LoginPageState extends State<LoginPage> {
       var dataToJson = json.decode(res.body);
 
       item = dataToJson['data'];
-
-      print(item['id']);
+      academicyear = dataToJson['academicTerms'];
+      print(academicyear);
+      print(item);
     });
   }
 
@@ -498,7 +501,8 @@ class _LoginPageState extends State<LoginPage> {
                                             city: item['city'],
                                             state: item['state'],
                                             pin: item['pincode'],
-                                            doj: item['join_year']),
+                                            doj: item['join_year'],
+                                        list: academicyear),
                                   );
 
                                   Navigator.of(context).push(route);

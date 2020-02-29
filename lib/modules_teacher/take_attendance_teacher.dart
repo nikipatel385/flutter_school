@@ -1,30 +1,61 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
+import 'package:calendarro/calendarro.dart';
+
+import 'package:http/http.dart' as http;
 
 import 'package:table_calendar/table_calendar.dart';
 
+import 'student_list.dart';
+
 class TakeAttendanceTeacher extends StatefulWidget {
+  final List syearList;
+
+  TakeAttendanceTeacher({this.syearList});
+
   @override
   _TakeAttendanceTeacherState createState() => _TakeAttendanceTeacherState();
 }
 
 class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
-  CalendarController _controller;
+  List data = List();
 
-  final _minpadding = 5.0;
+  // ignore: missing_return
+  Future<String> fetchStudentAttendance() async {
+    var studentAttendance = await http.get(
+        Uri.encodeFull(
+            'http://202.47.117.124/student/student_attendance?type=API&user_id=48&sub_institute_id=46&syear=2019'),
+        headers: {"Accept": "application/json"});
 
-  var _studentClass = ['--Class--', 'Jrkg-A', 'Nursary-A'];
+    setState(() {
+      var dataToJson = json.decode(studentAttendance.body);
 
-  var _currentItemSelected = '--Class--';
-
-  var year = ['--Year--','2019'];
-  var _currentYear = '--Year--';
+      data = dataToJson['standardDivision'];
+      print(data);
+      print(widget.syearList);
+    });
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = CalendarController();
+    //   _controller = CalendarController();
+    this.fetchStudentAttendance();
   }
+
+  // CalendarController _controller;
+
+  final _minpadding = 5.0;
+
+  var _studentClass = ['--Class--', 'Jrkg-A', 'Nursary-A'];
+
+  String _currentItemSelected;
+
+  var year = ['--Year--', '2019'];
+  var _currentYear = '--Year--';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +70,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: _minpadding * 2,left: 20.0),
+                    padding: EdgeInsets.only(top: _minpadding * 2, left: 20.0),
                     child: Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 10.0),
@@ -81,12 +112,19 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
+                          hint: Text(
+                            '--Class--',
+                            style:
+                                TextStyle(color: Colors.indigo, fontSize: 20.0),
+                          ),
                           isDense: true,
-                          items: _studentClass.map((String value) {
+                          items: data.map((item) {
                             return DropdownMenuItem<String>(
-                              value: value,
+                              value: item['standard_name'],
                               child: Text(
-                                value,
+                                item['standard_name'] +
+                                    '-' +
+                                    item['division_name'],
                                 style: TextStyle(
                                     color: Colors.indigo, fontSize: 20.0),
                               ),
@@ -100,11 +138,19 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
                       ),
                     ),
                   ),
+//                  Calendarro(
+//                    onTap: (date){
+//                      var route = MaterialPageRoute(
+//                        builder: (BuildContext
+//                        context) =>
+//                            StudentList(),
+//                      );
+//                      Navigator.of(context)
+//                          .push(route);
+//                    }
+//                  )
                 ],
               ),
-              TableCalendar(
-                calendarController: _controller,
-              )
             ],
           ),
         ));
@@ -116,7 +162,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
     });
   }
 
-  void _onYearSelected(String newYearSelected){
+  void _onYearSelected(String newYearSelected) {
     setState(() {
       this._currentYear = newYearSelected;
     });

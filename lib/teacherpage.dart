@@ -14,6 +14,7 @@ import 'modules_teacher/assign_homework_teacher.dart';
 
 class TeacherPage extends StatefulWidget {
   final String img, fn, mn, ln, eml, mob, gen, dob, add, city, state, pin, doj;
+  final List list;
 
   TeacherPage(
       {this.img,
@@ -28,7 +29,7 @@ class TeacherPage extends StatefulWidget {
       this.city,
       this.state,
       this.pin,
-      this.doj});
+      this.doj,this.list});
 
   @override
   _TeacherPageState createState() => _TeacherPageState();
@@ -261,7 +262,7 @@ class _TeacherPageState extends State<TeacherPage> {
               ),
               onTap: () {
                 var route = MaterialPageRoute(
-                  builder: (BuildContext context) => TakeAttendanceTeacher(),
+                  builder: (BuildContext context) => TakeAttendanceTeacher(syearList: widget.list),
                 );
                 Navigator.of(context).push(route);
               },
