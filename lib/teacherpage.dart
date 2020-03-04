@@ -108,7 +108,7 @@ class _TeacherPageState extends State<TeacherPage> {
                   onTap: () {
                     var route = MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          TakeAttendanceTeacher(),
+                          TakeAttendanceTeacher(syearList: widget.list),
                     );
                     Navigator.of(context).push(route);
                   },
