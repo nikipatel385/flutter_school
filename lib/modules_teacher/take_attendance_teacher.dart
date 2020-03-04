@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:calendarro/date_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +58,23 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
       print(studList);
     });
   }
+  
+  // ignore: missing_return
+  Future<String> fetchSaveAttendance() async {
+    var saveAttendance = await http.post(Uri.encodeFull('http://202.47.117.124/student/save_student_attendance'),
+    body: {
+      'date' : '2020-02-24',
+      'type' : 'API',
+      'student[3342]' : 'P',
+      'syear' : '2019',
+      'term_id' : '1',
+      'user_id' : '48',
+      'user_profile_id' : '10',
+      'sub_institute_id' : '46',
+      'standard_division' : '77||22'
+    });
+    print(saveAttendance.body);
+  }
 
   @override
   void initState() {
@@ -67,6 +83,7 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
     //   _controller = CalendarController();
     this.fetchStudentAttendance();
     this.fetchShowAttendance();
+    this.fetchSaveAttendance();
   }
 
   // CalendarController _controller;
