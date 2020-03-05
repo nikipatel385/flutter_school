@@ -58,22 +58,28 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
       print(studList);
     });
   }
-  
+
   // ignore: missing_return
   Future<String> fetchSaveAttendance() async {
-    var saveAttendance = await http.post(Uri.encodeFull('http://202.47.117.124/student/save_student_attendance'),
-    body: {
-      'date' : '2020-02-24',
-      'type' : 'API',
-      'student[3342]' : 'P',
-      'syear' : '2019',
-      'term_id' : '1',
-      'user_id' : '48',
-      'user_profile_id' : '10',
-      'sub_institute_id' : '46',
-      'standard_division' : '77||22'
-    });
+    var saveAttendance = await http.post(
+        Uri.encodeFull('http://202.47.117.124/student/save_student_attendance'),
+        body: {
+          'date': '2020-02-24',
+          'type': 'API',
+          'student[3342]': 'P',
+          'syear': '2019',
+          'term_id': '1',
+          'user_id': '48',
+          'user_profile_id': '10',
+          'sub_institute_id': '46',
+          'standard_division': '77||22'
+        });
     print(saveAttendance.body);
+    setState(() {
+      var datatojson = json.decode(saveAttendance.body);
+      var msg = datatojson['message'];
+      print(msg);
+    });
   }
 
   @override
@@ -95,6 +101,8 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
   String _currentItemSelected, _currentYear;
 
   //var year = ['--Year--', '2019'];
+
+  TextEditingController _calendar = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -186,8 +194,8 @@ class _TakeAttendanceTeacherState extends State<TakeAttendanceTeacher> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0),
                 child: Calendarro(
-                  startDate: DateTime(2019,12,02),
-                  endDate: DateTime(2020,05,29),
+                  startDate: DateTime(2019, 12, 02),
+                  endDate: DateTime(2020, 05, 29),
                   displayMode: DisplayMode.MONTHS,
                   onTap: (date) {
                     var route = MaterialPageRoute(

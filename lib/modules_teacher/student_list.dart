@@ -33,7 +33,7 @@ class _StudentListState extends State<StudentList> {
                         title: Text(
                           widget.studlist[index]['first_name'] +
                               ' ' +
-                              widget.studlist[index]['father_name'] ,
+                              widget.studlist[index]['father_name'],
                           style: TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.bold),
                         ),
@@ -44,6 +44,11 @@ class _StudentListState extends State<StudentList> {
                         trailing: Checkbox(
                           value: checkBoxValue,
                           activeColor: Colors.green,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkBoxValue = value;
+                            });
+                          },
                         ),
                       )
 //                      Container(
