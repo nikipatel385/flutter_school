@@ -482,7 +482,7 @@ class _LoginPageState extends State<LoginPage> {
                                             state: item['state'],
                                             pin: item['pincode'],
                                             doj: item['join_year'],
-                                        list: academicyear),
+                                            list: academicyear),
                                   );
 
                                   Navigator.of(context).push(route);
